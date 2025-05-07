@@ -1,24 +1,28 @@
-LandXMLValidationChecker
-This is a lightweight C# console utility that validates a LandXML file against known Civil 3D Design Automation (DA) processing limitations.
+# LandXMLValidationChecker 
 
-Autodesk Civil 3D DA has practical limits on the size and structure of LandXML files it can reliably handle. This tool helps you pre-validate your LandXML files before uploading or using them with Civil 3D DA workflows.
+ Autodesk Civil 3D DA has practical limits on the size and structure of LandXML files it can reliably handle. This tool helps you pre-validate your LandXML files before uploading or using them with Civil 3D DA workflows.
+---
 
-⚙️ Features
-Parses LandXML and identifies surface groups and surfaces
+## ⚙️ Features
 
-Counts number of points (<P> elements) per surface
+- Parses LandXML and identifies surface groups and surfaces
+- Counts number of points (`<P>` elements) per surface
+- Displays a **summary** of surface groups, surface counts, and point counts
+- Performs **limit checks** to ensure the file adheres to safe processing thresholds
 
-Displays a summary of surface groups, surface counts, and point counts
+---
 
-Performs limit checks to ensure the file adheres to safe processing thresholds
+## ✅ Theoretical Limits Checked
 
-✅ Theoretical Limits Checked
-Check	Threshold
-Total Points Across All Surfaces	160 million
-Total Number of Surfaces	850
-Total Points Per Surface Group	16 million
+| Check                            | Threshold         |
+|----------------------------------|-------------------|
+| Total Points Across All Surfaces | 160 million       |
+| Total Number of Surfaces         | 850               |
+| Total Points Per Surface Group   | 16 million        |
 
 If any of these limits are exceeded, the tool will emit a warning and stop further checks.
+
+---
 
 📦 Usage
 ```bash
