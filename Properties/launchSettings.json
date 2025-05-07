@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "LandXMLValidationChecker": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\Work\\Cases\\24780\\24780_Test.xml -s -c",
+      "workingDirectory": "D:\\Work\\repo\\LandXMLValidationChecker"
+    }
+  }
+}
