@@ -104,28 +104,76 @@ class Program
         Console.WriteLine("\n=== Limit Checks ===");
 
         // Check overall point limit
-        Console.Write("✔ Total Points: ");
+      
         if (totalPoints > TheoreticalPointLimit)
+        {
+            Console.Write("❌ Total Points: ");
             Warn($"Exceeded! ({totalPoints} > {TheoreticalPointLimit})");
+        }
+        else if (totalPoints == 0)
+        {
+            Console.Write("❌ Total Points: ");
+            Warn($"No points found!");
+        }
+        else if (totalPoints < 0)
+        {
+            Console.Write("❌ Total Points: ");
+            Warn($"Negative point count! ({totalPoints})");
+        }
         else
+        {
+            Console.Write("✔ Total Points: ");
             Pass($"OK ({totalPoints} ≤ {TheoreticalPointLimit})");
+        }
 
         // Check surface count limit
-        Console.Write("✔ Total Surfaces: ");
-        if (totalSurfaces > TheoreticalSurfaceLimit)
+
+        if (totalSurfaces > TheoreticalSurfaceLimit) {
+            Console.Write("❌ Total Surfaces: ");
             Warn($"Exceeded! ({totalSurfaces} > {TheoreticalSurfaceLimit})");
+        }
+        else if (totalSurfaces == 0)
+        {
+            Console.Write("❌ Total Surfaces: ");
+            Warn($"No surfaces found!");
+        }
+        else if (totalSurfaces < 0)
+        {
+            Console.Write("❌ Total Surfaces: ");
+            Warn($"Negative surface count! ({totalSurfaces})");
+        }
         else
+        {
+            Console.Write("✔ Total Surfaces: ");
             Pass($"OK ({totalSurfaces} ≤ {TheoreticalSurfaceLimit})");
+        }
+          
 
         // Check group-wise point limit
         foreach (var group in summary.SurfaceGroups)
         {
             int groupPoints = group.SurfaceCollection.Sum(s => s.PointCount);
-            Console.Write($"✔ {group.Name}: ");
+           
             if (groupPoints > TheoreticalSurfaceGroupPointLimit)
+            {
+                Console.Write($"❌ {group.Name}: ");
                 Warn($"Exceeded! ({groupPoints} > {TheoreticalSurfaceGroupPointLimit})");
+            }
+            else if (groupPoints == 0)
+            {
+                Console.Write($"❌ {group.Name}: ");
+                Warn($"No points found!");
+            }
+            else if (groupPoints < 0)
+            {
+                Console.Write($"❌ {group.Name}: ");
+                Warn($"Negative point count! ({groupPoints})");
+            }             
             else
+            {
+                Console.Write($"✔ {group.Name}: ");
                 Pass($"OK ({groupPoints} ≤ {TheoreticalSurfaceGroupPointLimit})");
+            }                
         }
 
         Console.WriteLine("\nAll limits checked.");
@@ -133,7 +181,7 @@ class Program
 
     static void Warn(string message)
     {
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("❌ " + message);
         Console.ResetColor();
     }
